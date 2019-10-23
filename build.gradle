@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
@@ -12,9 +13,9 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
 }
-bootJar {
-	mainClassName = 'org.baeldung.DemoApplication'
-}
+//bootJar {
+//	mainClassName = 'org.baeldung.DemoApplication'
+//}
 
 dependencies {
 	compile('org.projectlombok:lombok')
@@ -25,4 +26,5 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compile ('mysql:mysql-connector-java')
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }

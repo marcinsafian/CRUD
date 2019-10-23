@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task_crud")
 public class TaskController {
@@ -37,7 +38,7 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/tasks/updateTask")
-    public TaskDto updateTask(TaskDto taskDto){
+    public TaskDto updateTask(@RequestBody TaskDto taskDto){
         return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     };
     @RequestMapping(method = RequestMethod.POST, value = "/tasks/createTask", consumes = APPLICATION_JSON_VALUE)
