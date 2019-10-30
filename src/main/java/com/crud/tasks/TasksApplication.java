@@ -1,5 +1,6 @@
 package com.crud.tasks;
 
+import com.crud.tasks.trello.client.TrelloClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -10,6 +11,9 @@ public class TasksApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TasksApplication.class, args);
+		TrelloClient n = new TrelloClient();
+		n.getTrelloBoards();
+		System.out.println(n);
 	}
 	/*@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
