@@ -12,4 +12,6 @@ public class Mail {
     private String toCc;
 
 
+    public Mail(String mailTo, String subject, String message, String toCc) {
+    }
 }
