@@ -4,7 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'war'//usuniete dla heroku
+//apply plugin: 'war'//usuniete dla heroku
 
 group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
