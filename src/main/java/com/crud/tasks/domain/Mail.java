@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-//@AllArgsConstructor
+@AllArgsConstructor
 public class Mail {
     private String mailTo;
     private String subject;
@@ -12,6 +12,6 @@ public class Mail {
     private String toCc;
 
 
-    public Mail(String mailTo, String subject, String message, String toCc) {
+    public Mail(String mailTo, String subject, String message) {
     }
 }
