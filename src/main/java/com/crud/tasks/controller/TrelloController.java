@@ -18,8 +18,6 @@ public class TrelloController {
 
     @Autowired
     private TrelloService trelloService;
-    @Autowired
-    private TrelloConfig trelloConfig;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
