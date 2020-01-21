@@ -13,6 +13,7 @@ import java.util.List;
 
 @Component
 public class TrelloFacade {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(TrelloFacade.class);
 
     @Autowired
@@ -31,9 +32,9 @@ public class TrelloFacade {
         return trelloMapper.mapToBoardsDto(filteredBoards);
     }
 
-    public CreatedTrelloCard createCard(final TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCardDto createCard(final TrelloCardDto trelloCardDto) {
         TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
         trelloValidator.validateCard(trelloCard);
-        return trelloService.createdTrelloCard(trelloMapper.mapToCardDto(trelloCard));
+        return trelloService.createTrelloCard(trelloMapper.mapToCardDto(trelloCard));
     }
 }
