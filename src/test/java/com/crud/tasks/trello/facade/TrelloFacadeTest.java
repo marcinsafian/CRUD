@@ -1,9 +1,6 @@
 package com.crud.tasks.trello.facade;
 
-import com.crud.tasks.domain.TrelloBoard;
-import com.crud.tasks.domain.TrelloBoardDto;
-import com.crud.tasks.domain.TrelloList;
-import com.crud.tasks.domain.TrelloListDto;
+import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
 import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.validator.TrelloValidator;
@@ -87,17 +84,43 @@ public class TrelloFacadeTest {
 
         //Then
         assertNotNull(trelloBoardDtos);
-//        assertEquals(1, trelloBoardDtos.size());
-//        trelloBoardDtos.forEach(trelloBoardDto -> {
-//            assertEquals("1", trelloBoardDto.getId());
-//            assertEquals("my_task", trelloBoardDto.getName());
-//
-//            trelloBoardDto.getLists().forEach(trelloListDto -> {
-//                assertEquals("1", trelloListDto.getId());
-//                assertEquals("my_list", trelloListDto.getName());
-//                assertEquals(false, trelloListDto.isClosed());
-//            });
-//        });
+        assertEquals(1, trelloBoardDtos.size());
+        trelloBoardDtos.forEach(trelloBoardDto -> {
+            assertEquals("1", trelloBoardDto.getId());
+            assertEquals("my_task", trelloBoardDto.getName());
+
+            trelloBoardDto.getLists().forEach(trelloListDto -> {
+                assertEquals("1", trelloListDto.getId());
+                assertEquals("my_list", trelloListDto.getName());
+                assertEquals(false, trelloListDto.isClosed());
+            });
+        });
+    }
+    @Test
+    public void shouldCreateCreatedTrelloCardDto() {
+        //Given
+        TrelloBadgesDto trelloBadgesDto = new TrelloBadgesDto(5, new
+                TrelloAttachmentsByTypeDto(new TrelloTrelloDto(3,4)));
+
+        CreatedTrelloCardDto createdCard = new CreatedTrelloCardDto("1", "card", "com/org", trelloBadgesDto);
+        TrelloCardDto card = new TrelloCardDto("card", "description", "pos", "1");
+
+        TrelloCard trelloCard = new TrelloCard("card", "description", "pos", "1");
+
+        when(trelloMapper.mapToCard(card)).thenReturn(trelloCard);
+        when(trelloMapper.mapToCardDto(trelloCard)).thenReturn(card);
+        when(trelloService.createTrelloCard(card)).thenReturn(createdCard);
+
+        //When
+        CreatedTrelloCardDto createdTrelloCardDto = trelloFacade.createCard(card);
+
+        //Then
+        assertEquals("1",createdTrelloCardDto.getId());
+        assertEquals("card",createdTrelloCardDto.getName());
+        assertEquals("com/org",createdTrelloCardDto.getShortUrl());
+        assertEquals(5,createdTrelloCardDto.getBadges().getVotes());
+        assertEquals(3,createdTrelloCardDto.getBadges().getAttachments().getTrello().getBoard());
+        assertEquals(4,createdTrelloCardDto.getBadges().getAttachments().getTrello().getCard());
     }
 
 }
