@@ -34,8 +34,12 @@ repositories {
 dependencies {
 
 	compile('org.springframework.boot:spring-boot-starter-mail:2.2.0.RELEASE')
+
+	//LOMBOK
 	compile('org.projectlombok:lombok')
 	annotationProcessor ('org.projectlombok:lombok')
+
+	//
 	compile ('org.springframework.boot:spring-boot-starter-web')
 	compile ('org.springframework.boot:spring-boot-starter-data-jpa')
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'//usuniete dla heroku
@@ -44,8 +48,13 @@ dependencies {
 	//compile('org.postgresql:postgresql')//dopisane dla heroku
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat') //usuniete dla heroku
+
+	//GSON - mapowanie obiektu na JSON i odwrotnie
 	compile ('com.google.code.gson:gson:2.8.2')
+
+	//ACTUATOR
 	compile('org.springframework.boot:spring-boot-starter-actuator')
+
 	//SWAGGER
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
