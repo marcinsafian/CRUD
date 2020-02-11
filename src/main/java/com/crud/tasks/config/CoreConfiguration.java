@@ -1,5 +1,4 @@
 package com.crud.tasks.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,14 +16,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class CoreConfiguration implements WebMvcConfigurer {
     @Bean
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-    @Bean public Docket api() {
+
+    @Bean
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select() .apis(RequestHandlerSelectors.basePackage("com.crud.tasks.controller"))
-                .paths(PathSelectors.any()) .build();
+                .select().apis(RequestHandlerSelectors.basePackage("com.crud.tasks.controller")).paths(PathSelectors.any()).build();
     }
+
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         // Required by Swagger UI configuration
@@ -34,4 +35,5 @@ public class CoreConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
 }
